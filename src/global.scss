@@ -24,3 +24,62 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+
+/*Importe de estilos Loginación*/
+//@import '~firebaseui/dist/firebaseui.css';
+
+/*Elimina Controles de Google Maps*/
+// a[href^="http://maps.google.com/maps"],
+// a[href^="https://maps.google.com/maps"],
+// a[href^="https://www.google.com/maps"] {
+//     display: none !important;
+// }
+// .gm-bundled-control .gmnoprint {
+//     display: block;
+// }
+// .gmnoprint:not(.gm-bundled-control) {
+//     display: none;
+// }
+// .gm-svpc{
+//     display: none;
+// }
+
+.ion-color-primario {
+    --ion-color-base: var(--ion-color-primario);
+    --ion-color-base-rgb: var(--ion-color-primario-rgb);
+    --ion-color-contrast: var(--ion-color-primario-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-primario-contrast-rgb);
+    --ion-color-shade: var(--ion-color-primario-shade);
+    --ion-color-tint: var(--ion-color-primario-tint);
+  }
+
+  .ion-color-secundario {
+    --ion-color-base: var(--ion-color-secundario);
+    --ion-color-base-rgb: var(--ion-color-secundario-rgb);
+    --ion-color-contrast: var(--ion-color-secundario-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-secundario-contrast-rgb);
+    --ion-color-shade: var(--ion-color-secundario-shade);
+    --ion-color-tint: var(--ion-color-secundario-tint);
+  }
+
+  .ion-color-terciario {
+    --ion-color-base: var(--ion-color-terciario);
+    --ion-color-base-rgb: var(--ion-color-terciario-rgb);
+    --ion-color-contrast: var(--ion-color-terciario-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-terciario-contrast-rgb);
+    --ion-color-shade: var(--ion-color-terciario-shade);
+    --ion-color-tint: var(--ion-color-terciario-tint);
+  }
+
+  .ion-color-cuarteto {
+    --ion-color-base: var(--ion-color-cuarteto);
+    --ion-color-base-rgb: var(--ion-color-cuarteto-rgb);
+    --ion-color-contrast: var(--ion-color-cuarteto-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-cuarteto-contrast-rgb);
+    --ion-color-shade: var(--ion-color-cuarteto-shade);
+    --ion-color-tint: var(--ion-color-cuarteto-tint);
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');

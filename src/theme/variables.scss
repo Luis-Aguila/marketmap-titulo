@@ -74,6 +74,47 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+
+  /** Estilos Propios MarketMap **/
+  /** primario **/
+  --ion-color-primario: #111111;
+  --ion-color-primario-rgb: 17,17,17;
+  --ion-color-primario-contrast: #000000;
+  --ion-color-primario-contrast-rgb: 0,0,0;
+  --ion-color-primario-shade: #000000;
+  --ion-color-primario-tint: #525252;
+  
+    
+  /** secundario **/
+  --ion-color-secundario: #1474B3;
+  --ion-color-secundario-rgb: 20,116,179;
+  --ion-color-secundario-contrast: #ffffff;
+  --ion-color-secundario-contrast-rgb: 255,255,255;
+  --ion-color-secundario-shade: #075B91;
+  --ion-color-secundario-tint: #3687BB;
+  
+  
+  /** terciario **/
+  --ion-color-terciario: #12AFAF;
+  --ion-color-terciario-rgb: 18,175,175;
+  --ion-color-terciario-contrast: #ffffff;
+  --ion-color-terciario-contrast-rgb: 255,255,255;
+  --ion-color-terciario-shade: #009191;
+  --ion-color-terciario-tint: #33BBBB;
+  
+  
+  /** cuarteto **/
+  --ion-color-cuarteto: #ff7f00;
+  --ion-color-cuarteto-rgb: 250,128,0;
+  --ion-color-cuarteto-contrast: #ffffff;
+  --ion-color-cuarteto-contrast-rgb: 255,255,255;
+  --ion-color-cuarteto-shade: #ff8000;
+  --ion-color-cuarteto-tint: #ff7514;
+  
+  /** Font Open Sans **/
+  --ion-font-family: 'Roboto', sans-serif;
+
 }
 
 @media (prefers-color-scheme: dark) {
