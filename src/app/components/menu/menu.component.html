@@ -1,3 +1,39 @@
-<p>
-  menu works!
-</p>
+<ion-menu contentId="principal" menuId="menuPrincipal" side="start">
+  	<ion-header>
+    	<ion-toolbar color="secundario">
+      	<ion-title>Menú Principal</ion-title>
+    	</ion-toolbar>
+  	</ion-header>
+
+  	<ion-content>
+    	<ion-item *ngIf="(logAuth.user | async) || {} as user">
+      		<ion-avatar slot="start">
+          		<img  src="{{user.photoURL}}">
+      		</ion-avatar>
+      		<ion-label>{{user.displayName}}</ion-label>
+    	</ion-item>
+  	</ion-content>
+
+  	<ion-footer>
+    	<ion-card class="ion-padding">
+      		<p>Creado por Luis Aguila Larenas.</p>
+      		<p>marketmap.mercados@gmail.com</p>
+      		<a href="https://master.d21oy5xp5wbm1u.amplifyapp.com/index.html" class="ion-center">Visitar Página Web</a>
+    	</ion-card>
+
+    	<ion-toolbar  color="secundario">
+			<ion-buttons slot="secondary" *ngIf="(logAuth.user | async) || {} as user">
+
+				<ion-button *ngIf="!user.uid" (click)="logAuth.googleLogin()">
+				  	<ion-icon slot="start" name="log-in"></ion-icon>
+				 	<ion-label slot="end">Iniciar Sesión</ion-label>
+				</ion-button>
+	
+				<ion-button *ngIf="user.uid" (click)="logAuth.signOut()">
+					<ion-icon slot="start" name="log-out"></ion-icon>
+					<ion-label slot="end">Cerrar sesión</ion-label>
+				</ion-button>
+			</ion-buttons>
+   		</ion-toolbar>
+  	</ion-footer>
+</ion-menu>

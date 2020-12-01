@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "marketmapp": {
+      "hosting": {
+        "app": [
+          "marketmapp"
+        ]
+      }
+    }
+  }
+}

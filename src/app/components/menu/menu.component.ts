@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthServiceService } from '../../services/auth-service.service';
+
+import { MarketServiceService } from '../../services/market-service.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -7,7 +12,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  logAuth: any;
+  constructor( private authservice: AuthServiceService,
+               public marketService: MarketServiceService,
+               public router: Router ) {
+    this.logAuth = this.authservice;
+  }
 
   ngOnInit() {}
 

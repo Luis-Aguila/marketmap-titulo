@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IonSegment } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
