@@ -1,9 +1,127 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>perfilUser</ion-title>
+<ion-header no-border>
+  <ion-toolbar color="secundario">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" menu="menuPrincipal"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Perfil Usuario</ion-title>
   </ion-toolbar>
+  
+
+  <ion-toolbar color="secundario" *ngIf="(logAuth.user | async) || {} as user">
+    <ion-card>
+      <ion-item>
+        <ion-label>
+          <h3 color="light">{{user.email}}</h3>
+          <p color="light">{{user.displayName}}</p>
+        </ion-label>
+        <ion-avatar class="avatar-perfil" slot="start">
+          <img src="{{ user.photoURL }}" />
+        </ion-avatar>
+      </ion-item>
+
+    </ion-card>
+  </ion-toolbar>
+
+
 </ion-header>
 
 <ion-content>
 
+  <ion-card class="ion-padding">
+
+
+    <ion-list>
+      <ion-label color="primario"><strong>Tus Negocios</strong></ion-label>
+      <ion-slides *ngIf="this.cantidadpropios === 0">
+        <ion-slide>
+          <ion-label>No hay Negocios Registrados</ion-label>
+        </ion-slide>
+      </ion-slides>
+      
+      <ion-item-sliding *ngFor="let propio of ( propiosMarkets | async)">
+        <ion-item>
+          <ion-label>
+            <h3>{{ propio.nombre }}</h3>
+            <p>{{ propio.tipo }}</p>
+          </ion-label>
+          <ion-avatar slot="start">
+            <img [src]="propio.portada" />
+          </ion-avatar>
+        </ion-item>
+  
+        <ion-item-options side="start">
+          <ion-item-option color="danger" (click)="alertEliminarMercado(propio.id)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item-options side="end">
+          <ion-item-option color="terciario" (click)="modificarMercado(propio.id)">
+            <ion-icon slot="icon-only" name="share"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  
+    <ion-list>
+      <ion-label color="primario"><strong>Favoritos</strong></ion-label>
+      <ion-slides *ngIf="dataLocalService.markets.length === 0">
+        <ion-slide>
+          <ion-label>No hay Favoritos</ion-label>
+        </ion-slide>
+      </ion-slides>
+      <div *ngIf="dataLocalService.markets.length > 0">
+        <ion-item-sliding *ngFor="let favoritos of dataLocalService.markets">
+          <ion-item>
+            <ion-label>
+              <h3>{{ favoritos.nombre }}</h3>
+              <p>{{ favoritos.tipo }}</p>
+            </ion-label>
+            <ion-avatar slot="start">
+              <img *ngIf="!favoritos.portada" src="/assets/shapes.svg" />
+              <img *ngIf="favoritos.portada" [src]="favoritos.portada" />
+            </ion-avatar>
+          </ion-item>
+  
+          <ion-item-options side="start">
+            <ion-item-option
+              (click)="alertEliminarFavorito(favoritos);"
+              color="danger">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+          <ion-item-options side="end">
+            <ion-item-option color="terciario" (click)="abrirFavorito(favoritos.id)">
+              <ion-icon slot="icon-only" name="share"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </div>
+    </ion-list>
+
+
+    
+  </ion-card>
+
 </ion-content>
+
+<ion-footer>
+  <ion-button *ngIf="this.cantidadpropios === 0"
+    [routerLink]="['/agregar-market']"
+    size="large"
+    expand="full"
+    color="secundario">
+    <ion-icon slot="end" name="add"></ion-icon>
+    Agregar su Negocio
+  </ion-button>
+  <ion-button *ngIf="this.cantidadpropios > 0"
+    (click)="mensajeNegocio()"
+    size="large"
+    expand="full"
+    color="secundario">
+    <ion-icon slot="end" name="add"></ion-icon>
+    Agregar su Negocio
+  </ion-button>
+</ion-footer>

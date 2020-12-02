@@ -31,20 +31,20 @@
 //@import '~firebaseui/dist/firebaseui.css';
 
 /*Elimina Controles de Google Maps*/
-// a[href^="http://maps.google.com/maps"],
-// a[href^="https://maps.google.com/maps"],
-// a[href^="https://www.google.com/maps"] {
-//     display: none !important;
-// }
-// .gm-bundled-control .gmnoprint {
-//     display: block;
-// }
-// .gmnoprint:not(.gm-bundled-control) {
-//     display: none;
-// }
-// .gm-svpc{
-//     display: none;
-// }
+a[href^="http://maps.google.com/maps"],
+a[href^="https://maps.google.com/maps"],
+a[href^="https://www.google.com/maps"] {
+  display: none !important;
+}
+.gm-bundled-control .gmnoprint {
+  display: block;
+}
+.gmnoprint:not(.gm-bundled-control) {
+  display: none;
+}
+.gm-svpc{
+  display: none;
+}
 
 .ion-color-primario {
     --ion-color-base: var(--ion-color-primario);

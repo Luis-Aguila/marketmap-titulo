@@ -19,6 +19,8 @@ import { MarketServiceService } from '../../services/market-service.service';
 // Componentes
 import { ComponentsModule } from '../../components/components.module';
 
+// Mapa
+import { AgmCoreModule } from '@agm/core';
 
 
 const routes: Routes = [
@@ -36,7 +38,10 @@ const routes: Routes = [
     IonicModule,
     HomePageRoutingModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC0chN_F3H7l4M6ByA2GXYQCXT-c_MeQyc'
+    })
   ],
   providers: [
     AuthServiceService,

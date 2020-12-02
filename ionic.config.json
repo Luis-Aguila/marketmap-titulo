@@ -1,7 +1,8 @@
 {
   "name": "marketmap-app",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

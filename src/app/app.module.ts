@@ -18,7 +18,7 @@ import { GeolocationServiceService } from './services/geolocation-service.servic
 import { MarketServiceService } from './services/market-service.service';
 import { DataLocalService } from './services/data-local.service';
 
-// Google plus
+// GOOGLEPLUS
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 // Importación FireBase
@@ -26,6 +26,28 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+
+// Storage
+import { IonicStorageModule } from '@ionic/storage';
+
+// AGM Core
+import { AgmCoreModule } from '@agm/core';
+
+// Geolocalización
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+//  Compartir en redes sociales
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
+// Llamada
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
+// Launch Navigator
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
+
+// Image picker
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 
 @NgModule({
@@ -37,7 +59,11 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     ComponentsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    IonicStorageModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC0chN_F3H7l4M6ByA2GXYQCXT-c_MeQyc'
+    })
   ],
   providers: [
     StatusBar,
@@ -47,7 +73,13 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     GeolocationServiceService,
     MarketServiceService,
     DataLocalService,
-    GooglePlus
+    GooglePlus,
+    SocialSharing,
+    Geolocation,
+    CallNumber,
+    LaunchNavigator,
+    ImagePicker,
+    File
   ],
   bootstrap: [AppComponent]
 })

@@ -8,12 +8,18 @@ import { PerfilMarketPageRoutingModule } from './perfil-market-routing.module';
 
 import { PerfilMarketPage } from './perfil-market.page';
 
+// Mapa
+import { AgmCoreModule } from '@agm/core';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PerfilMarketPageRoutingModule
+    PerfilMarketPageRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC0chN_F3H7l4M6ByA2GXYQCXT-c_MeQyc'
+    })
   ],
   declarations: [PerfilMarketPage]
 })

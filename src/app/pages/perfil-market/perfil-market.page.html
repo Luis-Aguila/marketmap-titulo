@@ -1,9 +1,79 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>perfilMarket</ion-title>
+<ion-header no-border>
+  <ion-toolbar color="secundario">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" menu="menuPrincipal"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{market.nombre}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
+
+
+
+
 <ion-content>
+  <ion-card class="portada-mercado">
+    <ion-img [src]="market.portada"></ion-img>
+  </ion-card>
+  <ion-button *ngIf="market.contacto != ''" (click)="callMercado(market.contacto)" color="secundario" expand="full" class="ion-padding">
+    <ion-icon slot="start" name="call"></ion-icon>
+    <ion-label slot="end">Llamar {{market.contacto}}</ion-label>
+  </ion-button>
+  <ion-button (click)="llegarMercado(market.latitud, market.longitud)" color="terciario" expand="full" class="ion-padding">
+    <ion-icon slot="start" name="navigate"></ion-icon>
+    <ion-label slot="end">Como llegar?</ion-label>
+  </ion-button>
+  <ion-card color="terciario">
+  <ion-list class="ion-padding">
+    
+    <ion-item>
+      <ion-label position="stacked"><small>Estado:</small></ion-label>
+        <ion-input *ngIf="market.estado === false" color="danger" disabled = "true">Mercado se encuentra Cerrado</ion-input>
+        <ion-input *ngIf="market.estado === true" color="success" disabled = "true">Mercado se encuentra Abierto</ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked"><small>Horario de Atención:</small></ion-label>
+        <ion-textarea row="2" disabled = "true" color="success">{{market.atencion}}</ion-textarea>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked"><small>Dirección:</small></ion-label>
+      <ion-textarea row="2" disabled = "true">{{market.direccion}}</ion-textarea>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked"><small>Descripción:</small></ion-label>
+      <ion-textarea row="3" disabled = "true">{{market.detalle}}</ion-textarea>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked"><small>Ofertas:</small></ion-label>
+      <ul>
+        <li *ngFor="let oferta of market.ofertas;">{{oferta}}</li>
+      </ul>
+    </ion-item>
+  </ion-list>
+</ion-card>
+
+<ion-label class="ion-padding"><small>Galeria:</small></ion-label>
+<ion-slides pager="true" options="initialSlide: 1,speed: 400">
+  <ion-slide *ngFor="let galeria of market.galeria; let i = index">
+    <img [src]="galeria" alt="Imagen N°{{i}}">
+  </ion-slide>
+</ion-slides>
+
+<ion-label class="ion-padding"><small>Ubicación:</small></ion-label>
+  <agm-map [latitude]="market.latitud" [longitude]="market.longitud" [zoom]="16">
+    <agm-marker [iconUrl]="market.icon" [latitude]="market.latitud" [longitude]="market.longitud">
+      <agm-info-window>
+        <strong>{{market.nombre}}</strong>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+
 
 </ion-content>

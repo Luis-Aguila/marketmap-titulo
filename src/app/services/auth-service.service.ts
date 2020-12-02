@@ -77,6 +77,12 @@ export class AuthServiceService {
     }
   }
 
+  capturarUID() {
+    this.user.subscribe( us => {
+      return us.uid;
+    });
+  }
+
 
 
 

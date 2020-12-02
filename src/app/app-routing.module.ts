@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/modificar-market/modificar-market.module').then( m => m.ModificarMarketPageModule)
   },
   {
-    path: 'perfil-market',
+    path: 'home/:id',
     loadChildren: () => import('./pages/perfil-market/perfil-market.module').then( m => m.PerfilMarketPageModule)
   },
   {
