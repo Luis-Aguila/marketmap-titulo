@@ -20,6 +20,13 @@ export class AuthServiceService {
 
   user: Observable<firebase.User>;
 
+  usuario: any = {
+    uid: '',
+    nombre: '',
+    email: '',
+    foto: ''
+  };
+
   constructor( private gplus: GooglePlus,
                private router: Router,
                public afAuth: AngularFireAuth,
@@ -77,9 +84,12 @@ export class AuthServiceService {
     }
   }
 
-  capturarUID() {
-    this.user.subscribe( us => {
-      return us.uid;
+  capturarDatosUduario() {
+    this.user.subscribe(  us =>   {
+      this.usuario.uid = us.uid;
+      this.usuario.nombre = us.displayName;
+      this.usuario.email = us.email;
+      this.usuario.foto = us.photoURL;
     });
   }
 

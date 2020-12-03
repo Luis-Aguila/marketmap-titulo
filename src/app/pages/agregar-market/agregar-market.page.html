@@ -1,9 +1,76 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>agregarMarket</ion-title>
+<ion-header no-border>
+  <ion-toolbar color="secundario">
+      <ion-buttons slot="start">
+          <ion-menu-button color="light" menu="menuPrincipal"></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+          <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">Agregar Negocio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <h3 class="ion-text-center">Agrega la información básica de tu negocio</h3>
+
+  <ion-card color="terciario">
+
+    <form #formulario="ngForm">
+        <ion-list class="ion-padding">
+            <ion-item>
+                <ion-label position="stacked">Nombre del Negocio</ion-label>
+                <ion-input [(ngModel)]="mercado.nombre" name="nombre" id="nombre" type="text" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Horario de atención</ion-label>
+              <ion-textarea rows="2" [(ngModel)]="mercado.atencion" name="atencion" id="atencion" type="text" required></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Dirección del Negocio</ion-label>
+              <ion-textarea rows="2" [(ngModel)]="mercado.direccion" name="direccion" id="direccion" type="text" required></ion-textarea>
+          </ion-item>
+          <ion-item>
+              <ion-label position="stacked">Número de Contacto</ion-label>
+              <ion-input  [(ngModel)]="mercado.contacto" name="contacto" id="contacto" type="text"></ion-input>
+          </ion-item>
+            <ion-item>
+                <ion-label position="stacked">Categoria</ion-label>
+                    <ion-select Interface="action-shet" [(ngModel)]="mercado.tipo" name="categoria" id="tipo" required multiple="false" placeholder="Seleccione su Categoria">
+                        <ion-select-option value="Pyme">Pyme (Ventas Varias)</ion-select-option>
+                        <ion-select-option value="Mercado">Mercado Particular</ion-select-option>
+                        <ion-select-option value="Farmacia">Farmacia</ion-select-option>
+                        <ion-select-option value="Supermercado">SuperMercado</ion-select-option>
+                        <ion-select-option value="Fruteria">Fruteria</ion-select-option>
+                        <ion-select-option value="Carniceria">Carniceria</ion-select-option>
+                        <ion-select-option value="Ferreteria">Ferreteria</ion-select-option>
+                        <ion-select-option value="Licoreria">Licoreria</ion-select-option>
+                        <ion-select-option value="Restaurant">Restaurant</ion-select-option>
+                    </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="stacked">Describe tu negocio</ion-label>
+                <ion-textarea rows="3" [(ngModel)]="mercado.detalle" name="detalle" id="detalle" type="text" required></ion-textarea>
+            </ion-item>
+        </ion-list>
+        
+       
+    </form>
+
+
+</ion-card>
+
+<ion-item>
+  <ion-label class="ion-text-center"><small>Seleccione su ubicación en el mapa</small></ion-label>
+</ion-item>
+<agm-map (mapClick)="agregarUbicacionMarket($event)" [latitude]="geolocationservice.position.latitud" [longitude]="geolocationservice.position.longitud" [zoom]="15">
+  <agm-marker [latitude]="mercado.latitud" [longitude]="mercado.longitud">
+      <agm-info-window>
+          <strong>Ubicación del negocio</strong>
+      </agm-info-window>
+  </agm-marker>
+</agm-map>
+<ion-button (click)="agregarMercado()" [disabled]="!formulario.valid || mercado.latitud == null" type="submit" expand="full">Publicar
+  <ion-icon slot="end" name="add"></ion-icon>
+</ion-button>
 
 </ion-content>

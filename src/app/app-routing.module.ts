@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/agregar-market/agregar-market.module').then( m => m.AgregarMarketPageModule)
   },
   {
-    path: 'modificar-market',
+    path: 'perfil-user/:id',
     loadChildren: () => import('./pages/modificar-market/modificar-market.module').then( m => m.ModificarMarketPageModule)
   },
   {

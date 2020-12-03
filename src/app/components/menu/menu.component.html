@@ -10,7 +10,7 @@
       		<ion-avatar slot="start">
           		<img  src="{{user.photoURL}}">
       		</ion-avatar>
-      		<ion-label>{{user.displayName}}</ion-label>
+      		<ion-label (click)="pruebaUID()">{{user.displayName}}</ion-label>
     	</ion-item>
   	</ion-content>
 

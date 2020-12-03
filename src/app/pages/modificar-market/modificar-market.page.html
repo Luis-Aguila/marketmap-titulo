@@ -1,9 +1,127 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>modificarMarket</ion-title>
+<ion-header no-border>
+  <ion-toolbar color="secundario">
+      <ion-buttons slot="start">
+          <ion-menu-button color="light" menu="menuPrincipal"></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+          <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">Modificar Negocio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-img [src]="mercado.portada"></ion-img>
+  </ion-card>
+
+  <ion-button (click)="capturarPortada()" expand="block" fill="clear" shape="round">
+    Cambiar Portada
+  </ion-button>
+
+  <ion-list *ngFor = "let portada of portadapiker">
+    <ion-item>
+      <img src="{{ portada }}">
+    </ion-item>
+  </ion-list>
+
+  <!-- Botones para abrir o cerrar en mercado -->
+  <ion-button (click)="cambiarEstado(false);" color="danger" expand="full" *ngIf="mercado.estado" class="ion-padding">
+    Cerrar mercado
+  </ion-button>
+  <ion-button (click)="cambiarEstado(true);" color="success" expand="full" *ngIf="!mercado.estado" class="ion-padding">
+    Abrir mercado
+  </ion-button>
+
+  <!-- Formilario de presentación y edición de los datos den mercados -->
+  <ion-card color="terciario">
+    <form #formulario="ngForm">
+        <ion-list class="ion-padding">
+          <ion-item>
+            <ion-label position="stacked"><small>Nombre del Negocio</small></ion-label>
+            <ion-input [(ngModel)]="mercado.nombre" name="nombre" id="nombre" type="text" required></ion-input>
+          </ion-item>
+            
+          <ion-item>
+            <ion-label position="stacked"><small>Horario de atención</small></ion-label>
+            <ion-textarea row="2" [(ngModel)]="mercado.atencion" name="atencion" id="atencion" type="text" required></ion-textarea>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="stacked"><small>Dirección:</small></ion-label>
+            <ion-textarea row="2" [(ngModel)]="mercado.direccion" name="direccion" id="direccion" type="text" required></ion-textarea>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="stacked"><small>Número de contacto</small></ion-label>
+            <ion-input [(ngModel)]="mercado.contacto" name="contacto" id="contacto" type="text" placeholder="Celular / Fijo"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="stacked"><small>Categoria</small></ion-label>
+            <ion-select Interface="action-shet" [(ngModel)]="mercado.tipo" name="categoria" id="tipo" required multiple="false" placeholder="Seleccione su Categoria">
+              <ion-select-option value="Pyme">Pyme (Emprendimiento)</ion-select-option>
+              <ion-select-option value="Mercado">Mercado Particular</ion-select-option>
+              <ion-select-option value="Farmacia">Farmacia</ion-select-option>
+              <ion-select-option value="Supermercado">SuperMercado</ion-select-option>
+              <ion-select-option value="Fruteria">Fruteria</ion-select-option>
+              <ion-select-option value="Carniceria">Carniceria</ion-select-option>
+              <ion-select-option value="Ferreteria">Ferreteria</ion-select-option>
+              <ion-select-option value="Licoreria">Licoreria</ion-select-option>
+              <ion-select-option value="Restaurant">Restaurant</ion-select-option>
+            </ion-select>
+          </ion-item>
+            
+          <ion-item>
+            <ion-label  position="stacked"><small>Detalle</small></ion-label>
+            <ion-textarea row="3" [(ngModel)]="mercado.detalle" name="detalle" id="detalle" type="text" required></ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <ion-label  position="stacked"><small>Oferta 1</small></ion-label>
+            <ion-input [(ngModel)]="mercado.ofertas[0]" name="oferta1" id="oferta1" type="text" placeholder="Oferta 1"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label  position="stacked"><small>Oferta 2</small></ion-label>
+            <ion-input [(ngModel)]="mercado.ofertas[1]" name="oferta2" id="oferta2" type="text" placeholder="Oferta 2"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label  position="stacked"><small>Oferta 3</small></ion-label>
+            <ion-input [(ngModel)]="mercado.ofertas[2]" name="oferta3" id="oferta3" type="text" placeholder="Oferta 3"></ion-input>
+          </ion-item>
+            
+        </ion-list>
+    </form>
+  </ion-card>
+
+  <!-- Galeria de imágenes -->
+  <ion-label class="ion-padding"><small>Galeria:</small></ion-label>
+
+  <ion-slides pager="true" options="initialSlide: 1,speed: 400">
+    <ion-slide *ngFor="let galeria of mercado.galeria; let i = index">
+        <img (click)="accionCambioGaleria(i);" [src]="galeria" alt="Imagen N°{{i}}">
+    </ion-slide>
+  </ion-slides>
+
+  <ion-input *ngIf="seleccionarCambioGaleria" (change)="actualizarGaleria($event);" type="file"></ion-input>
+
+  <!-- Ubicación mapa -->
+  <ion-label class="ion-text-center ion-padding"><small>Seleccione su ubicación en el mapa</small></ion-label>
+  <agm-map (mapClick)="agregarUbicacionMarket($event)" [latitude]="mercado.latitud" [longitude]="mercado.longitud" [zoom]="15">
+    <agm-marker [iconUrl]="mercado.icon" [latitude]="mercado.latitud" [longitude]="mercado.longitud">
+      <agm-info-window>
+        <strong>Ubicación del negocio</strong>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+
+  <!-- Botón de Guardado -->
+  <ion-button (click)="modificarMercado()" [disabled]="!formulario.valid" type="submit" expand="full" type="submit">Modificar Mercado
+    <ion-icon slot="end" name="add"></ion-icon>
+  </ion-button>
+
+
 
 </ion-content>

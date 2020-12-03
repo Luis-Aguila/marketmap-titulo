@@ -8,12 +8,30 @@ import { AgregarMarketPageRoutingModule } from './agregar-market-routing.module'
 
 import { AgregarMarketPage } from './agregar-market.page';
 
+// Mapa
+import { AgmCoreModule } from '@agm/core';
+
+// Componentes
+import { ComponentsModule } from '../../components/components.module';
+
+
+// Servicios
+import { GeolocationServiceService } from '../../services/geolocation-service.service';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AgregarMarketPageRoutingModule
+    AgregarMarketPageRoutingModule,
+    ComponentsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC0chN_F3H7l4M6ByA2GXYQCXT-c_MeQyc'
+    })
+  ],
+  providers: [
+    GeolocationServiceService
   ],
   declarations: [AgregarMarketPage]
 })

@@ -8,12 +8,18 @@ import { ModificarMarketPageRoutingModule } from './modificar-market-routing.mod
 
 import { ModificarMarketPage } from './modificar-market.page';
 
+// Mapa
+import { AgmCoreModule } from '@agm/core';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ModificarMarketPageRoutingModule
+    ModificarMarketPageRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC0chN_F3H7l4M6ByA2GXYQCXT-c_MeQyc'
+    })
   ],
   declarations: [ModificarMarketPage]
 })

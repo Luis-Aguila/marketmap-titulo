@@ -29,7 +29,7 @@ import { AlertController } from '@ionic/angular';
 export class PerfilUserPage implements OnInit {
 
   logAuth: any;
-  propietario: any;
+  propietario: string;
   private markets: Observable<Mercado[]>;
   private marketslocal;
   public propiosMarkets: Observable<Mercado[]>;
@@ -43,23 +43,17 @@ export class PerfilUserPage implements OnInit {
               public geolocationservice: GeolocationServiceService,
               public alertController: AlertController) {
     this.logAuth = this.authservice;
+    this.logAuth.capturarDatosUduario();
   }
 
   ngOnInit() {
-    this.authservice.user.subscribe( user => {
-      this.propiosMarkets = this.marketService.cargarPropios(user.uid);
-      this.propiosMarkets.subscribe( market => {
+    // this.authservice.capturarDatosUduario();
+    this.propietario = this.logAuth.usuario.uid;
+
+    this.propiosMarkets = this.marketService.cargarPropios(this.propietario);
+    this.propiosMarkets.subscribe( market => {
         this.cantidadpropios = market.length;
-      });
     });
-
-    // this.propietario = this.authservice.capturarUID();
-
-    // this.propietario = this.authservice.afAuth.currentUser;
-
-    // this.authservice.user.subscribe( us => this.propietario = us.uid);
-    // console.log(this.propietario);
-    
   }
 
   async alertEliminarMercado(id: string) {
